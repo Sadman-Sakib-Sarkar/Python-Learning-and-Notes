@@ -1,0 +1,65 @@
+-------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////--irtual Environment Settings--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-------------------------------------------------------------------------------------------------------------------
+## Pipenv is similar to venv and its easier to learn and implement
+# Internally it uses pip and virtual environment
+
+## At first need to install pipenv in terminal: pip3 install pipenv
+# Now instead pip we will use pipenv like: pipenv install requests
+# To see the path of the virtual environment: pipenv --venv
+# We need to exclude the virtual environment from our project directory
+# Now uninstall the request package: pipenv uninstall requests (we installed a dependency using pipenv)
+
+## We need to activate the virtual environment
+#: pipenv shell
+# It will activate our virtual environment
+# For deactivate it : exit
+
+## In vs code: pipenv --venv
+#: open
+# inside the bin folder we got python3 (for windows python)
+# we need to pass the python interpreter and give it to the code runner extension
+
+# Back to vs code -> preferences -> settings -> click dotdotdot -> open settings.json
+# Scroll down -> "coderunner.executorMap" -> "python": "instead python3 paste the path of virtual environment/bin/python3"
+# Or if we cannot find the settings we can simply add the interpreter "paste the path of virtual environment/bin/python3"
+
+# If no coderunner.executorMap found then write and press enter it will create by own
+# to see changge while coding need to select the new interpreter
+# if new interpreter is missing then -> open settings.json -> add "python.pythonPath": "paste the path of virtual environment/bin/python3",
+# Then we need to restart the vs code
+
+
+
+---------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////--Starting Django Project--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+---------------------------------------------------------------------------------------------------------------
+1. First open the terminal inside that folder
+2. Then install django virtual environment: pipenv install django
+3. Then: pipenv shell (it will activate the virtual environment)
+
+4. To create new project: django-admin startproject projectname . (dot means create in the current directory)
+5. It will create a basic website with some boilerplate code
+6. Inside the project folder we will see two same folder with projectname
+7. Outer one that we have created and inner one is simply a package which is essential for our project
+8. In that inner folder:
+    __init.py__ -> its simply define that it is a package folder
+    settings.py -> here we have various configuration settings for our project
+    urls.py -> here we define various url endpoints for our project
+    wsgi.py -> (Web Server Gateway Interface) its purpose is to build a standard interface between application written in python and webserver
+
+## For running the Server
+1. Enter the projectname folder and then: python3 manage.py runserver
+2. If the default server port is busy we can use: python3 manage.py runserver 8080
+
+## Creating app
+1. In django we will create small apps inside the project. Each app will perform any specific task.
+2. For creating app: python3 manage.py startapp movies (here movies is an app name)
+3. It will create a folder of that app name. 
+4. Inside the appname folder we will see a folder named migrations. In that folder:
+    __init__.py -> it defines that its a package
+    admin.py -> it is where we define how the adminstration area for managing the app will look like
+    apps.py -> We use this for various configuration settings for this app
+    models.py -> Here we define classes that represent the domain of this app (Example: For movies app we can add class like movie, genre)
+    tests.py -> This is where we write automated tests for this app
+    views.py -> This is where we define our view functions
