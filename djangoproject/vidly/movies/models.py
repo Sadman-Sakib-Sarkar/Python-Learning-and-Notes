@@ -1,3 +1,36 @@
-from django.db import models
+from django.db import models #This package stores all the method for using databases
 
 # Create your models here.
+# Here our classes will be stored like genre, movie etc.
+
+class Genre(models.Model): 
+    #inside the models module there is a Model class
+    #it has all the functionalities for storing model objects in the database or retreiving model object filter them and so on
+    #by inheriting genre class from model.Model class we can use all the methods of that class
+    name = models.CharField(max_length=255)
+
+class Movie(models.Model):
+    title = models.CharField(max_length=255)
+    release_year = models.IntegerField()
+    number_in_stock = models.IntegerField()
+    daily_rate = models.FloatField()
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE) 
+    #by on_delete we tells django what should happen when the genre is deleted 
+    #here we used cascading it means if we delete a genre all the movies under the genre will be deleted
+
+#in future we can add more classes or modify our existing classes
+#next step is to tell django to synchronise our database with the models we have defined in the movies app
+
+
+# To reflect the changes of models in database: python3 manage.py makemigrations
+# But it will show no changes detected because we haven't registered our movies app with django
+# open our vidly project -> settings.py -> INSTALLED_APPS = [appname.apps.classname.Config]
+# apps class name can be found inside the app folder -> apps.py -> classname.Config
+
+# Next step is to run: python3 manage.py runserver
+# It will show that one extra migration is unapplied. That means we have migrations that we need to execute
+# So stop the server with cntrl+c
+# run: python3 manage.py migrate 
+# It will execute all the pending migration on our database
+
+
