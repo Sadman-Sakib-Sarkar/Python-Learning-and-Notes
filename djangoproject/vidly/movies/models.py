@@ -1,4 +1,5 @@
 from django.db import models #This package stores all the method for using databases
+from django.utils import timezone
 
 # Create your models here.
 # Here our classes will be stored like genre, movie etc.
@@ -14,9 +15,12 @@ class Movie(models.Model):
     release_year = models.IntegerField()
     number_in_stock = models.IntegerField()
     daily_rate = models.FloatField()
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE) 
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     #by on_delete we tells django what should happen when the genre is deleted 
     #here we used cascading it means if we delete a genre all the movies under the genre will be deleted
+    date_created = models.DateTimeField(default=timezone.now) #here we are passing reference not method to make it dynamically changed time
+    #datetime.now() don't know the timezone
+    #better approach is to use datetime with timezone: 
 
 #in future we can add more classes or modify our existing classes
 #next step is to tell django to synchronise our database with the models we have defined in the movies app
