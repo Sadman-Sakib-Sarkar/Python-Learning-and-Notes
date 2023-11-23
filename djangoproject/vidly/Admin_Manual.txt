@@ -1,0 +1,11 @@
+# All django project comes with a powerful admin panel which is also called an app of our project
+# To see the admin login -> serverlink/admin
+# The admin panel is available because there is an installed app in settings.py which is -> 'django.contrib.auth'
+# This app is a small reusable package that we can use in our project
+
+## First step is to create the super user of our database
+# Open new terminal -> :python3 manage.py createsuperuser
+    username: admin
+    email address: anything@email.com
+    password: anything strong. if we use weak password then type y and bypass with the weak password (here 1234 for this project)
+
