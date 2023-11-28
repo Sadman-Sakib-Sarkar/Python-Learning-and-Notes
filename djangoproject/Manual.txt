@@ -63,3 +63,9 @@
     models.py -> Here we define classes that represent the domain of this app (Example: For movies app we can add class like movie, genre)
     tests.py -> This is where we write automated tests for this app
     views.py -> This is where we define our view functions
+
+
+## Installing pylint and configuration:
+1. In command line: pipenv install pylint-django
+2. Create a new file on the root project folder: .pylintrc
+3. Inside the ".pylintrc" file write and save: load-plugins=pylint-django
