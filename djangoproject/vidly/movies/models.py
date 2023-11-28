@@ -10,6 +10,11 @@ class Genre(models.Model):
     #by inheriting genre class from model.Model class we can use all the methods of that class
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name 
+        #this __str__ magic method is for returning as object otherwise it will consider every name as object
+        #now if we want to add more columns in admin panel then we need to go to the admin.py file
+
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     release_year = models.IntegerField()

@@ -9,3 +9,5 @@
     email address: anything@email.com
     password: anything strong. if we use weak password then type y and bypass with the weak password (here 1234 for this project)
 
+# Additional models can be registered in admin.py in order to be visible in the admin interface
+    # admin.site.register(ExampleModel)

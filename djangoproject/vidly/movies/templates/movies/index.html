@@ -1,0 +1,29 @@
+<!-- Zen Coding: table.table>thead>tr>th*3 -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Stock</th>
+            <th>Daily Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- We will iterate all the movies dynamically in this template
+        For each movie we will generate a row
+        Here we will use django template syntax -->
+
+        {% for movie in movies %}
+        <!-- Here the movies is the key value that we passed in the dictionary -->
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genre }}</td>
+            <td>{{ movie.number_in_stock }}</td>
+            <td>{{ movie.daily_rate }}</td>
+        </tr>
+
+        {% comment %} In django {{ }} is used for rendering value and {% %} is used for execute logic {% endcomment %}
+        {% endfor %}
+
+    </tbody>
+</table>
