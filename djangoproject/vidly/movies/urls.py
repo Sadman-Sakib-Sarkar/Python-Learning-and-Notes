@@ -4,6 +4,8 @@
 from django.urls import path
 from . import views #This is a better way in django to imoprt. Dot means the current directory
 
+app_name = 'movies'
+
 ## Url Configuration:
 #Here we can pass one or more path objects. Every app will have a url configuraion.
 urlpatterns = [
@@ -11,6 +13,10 @@ urlpatterns = [
     #Empty string will represent the root of the app
     #We need to map this with a view function so that we need to import index function from our views module
     #name='index' is the best practice to give name to url end points
+
+    path('<int:movie_id>', views.detail, name='detail'), #we can pass any type but for int we can cast by int:parameter
+    #angle brackets to define a parameter
+    #movies/1
 ]
 
 #After that we need to go to the main apps urls.py file that defines urls configuration of our main app

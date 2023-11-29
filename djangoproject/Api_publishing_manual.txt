@@ -1,0 +1,29 @@
+## For publishing api's there is two popular frameworks
+    1. django-tastypie (in beta release but actively using several websites)
+    2. djangorestframework (this is feature rich and used in large enterprise applications but complex to use)
+
+## Here we will use tastypie
+    1. install tastypie on the project folder: pipenv install django-tastypie
+    2. we need to create a new app in the project: python3 manage.py startapp api
+        * This app will be purely responsible for exposing api endpoints
+    3. register the api app in list of register apps
+        *settings.py -> INSTALLED_APPS -> 'api.apps.ApiConfig'
+    4. we will create a new model
+        *open models.py
+        *in the world of api we refer our models to resources
+        *RESTfull api means Representational State Transfer (its a bunch of technical convention that defines 
+         how applications should talk to each other ove http protocol)
+    5. we will create classResources
+        *class MovieResource(ModelResource):   ##import: from tastypie.resources import ModelResource##
+        *inside MovieResource class create a Meta class
+            *class Meta:
+                *queryset = Movie.objects.all()  ##import: from movies.models import Movie##
+                    *it returns a query object (lazy object) when it will need it will perform task. its called lazy loading
+                *resource_name = 'movies'  ##this will determines what our end points are look like##
+                    *later it will return '/api/movies/'
+                *we are done with our models. next step is to generate url end points
+    6. Next go to the vidly app (main app) -> urls.py ->
+        *movie_resource = MovieResource()
+        *urlpatterns =[
+            path('api/', include(movie_resource.urls))   ##import: from api.models import MovieResource
+        ]

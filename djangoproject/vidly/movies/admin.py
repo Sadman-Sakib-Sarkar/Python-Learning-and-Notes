@@ -9,7 +9,7 @@ class MovieAdmin(admin.ModelAdmin):
     # Here we can use fields attribute to show the fields like: fields = ('title', 'genre')
     # Or we can exclude some fields like. Here we will exclude the date_created field
     exclude = ('date_created', ) # We need to add a comma other wise python will not consider it as tuple. Python will consider it as a string with paranthysis.
-    list_display = ('title', 'number_in_stock', 'daily_rate')
+    list_display = ('title', 'number_in_stock', 'daily_rate', 'genre')
 
 # Register your models here.
 admin.site.register(Genre, GenreAdmin)

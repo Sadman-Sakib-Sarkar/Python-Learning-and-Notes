@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Zen code: dl>(dt+dd)*3 -->
+    <dl class="list-group">
+        <dt class="list-group-item active">Title</dt>
+        <dd class="list-group-item">{{ movie.title }}</dd>
+        <dt class="list-group-item active">Genre</dt>
+        <dd class="list-group-item">{{ movie.genre }}</dd>
+        <dt class="list-group-item active">Stock</dt>
+        <dd class="list-group-item">{{ movie.number_in_stock }}</dd>
+    </dl>
+{% endblock  %}

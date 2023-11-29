@@ -1,29 +1,47 @@
-<!-- Zen Coding: table.table>thead>tr>th*3 -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Stock</th>
-            <th>Daily Rate</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- We will iterate all the movies dynamically in this template
-        For each movie we will generate a row
-        Here we will use django template syntax -->
+{% extends "base.html" %}
+ 
+{% comment %} base templates can be shared to multiple apps. for set the path of base.html add templates path to settings {% endcomment %}
 
-        {% for movie in movies %}
-        <!-- Here the movies is the key value that we passed in the dictionary -->
-        <tr>
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.genre }}</td>
-            <td>{{ movie.number_in_stock }}</td>
-            <td>{{ movie.daily_rate }}</td>
-        </tr>
+{% block content %}
 
-        {% comment %} In django {{ }} is used for rendering value and {% %} is used for execute logic {% endcomment %}
-        {% endfor %}
+    <!-- Zen Coding: table.table>thead>tr>th*3 -->
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Stock</th>
+                <th>Daily Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- We will iterate all the movies dynamically in this template
+            For each movie we will generate a row
+            Here we will use django template syntax -->
+            
+            {% for movie in movies %}
+            <!-- Here the movies is the key value that we passed in the dictionary -->
+            <tr>
+                <td>
+                    {% comment %} 
+                    <a href="/movies/{{ movie.id }}">{{ movie.title }}</a>
+                    we will use the best practice of referencing links
+                    {% endcomment %}
+                    {% comment %} 
+                    <a href="{% url "movies_detail" movie.id %}">{{ movie.title }}</a> 
+                    we will use if we use name="movies_detail" in url. but if we use app_name then we will use the following method
+                    {% endcomment %}
+                    <a href="{% url "movies:detail" movie.id %}">{{ movie.title }}</a>
+                </td>
+                <td>{{ movie.genre }}</td>
+                <td>{{ movie.number_in_stock }}</td>
+                <td>{{ movie.daily_rate }}</td>
+            </tr>
 
-    </tbody>
-</table>
+            {% comment %} In django {{ }} is used for rendering value and {% %} is used for execute logic {% endcomment %}
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+{% endblock  %}

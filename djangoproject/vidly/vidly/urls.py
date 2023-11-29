@@ -16,11 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from api.models import MovieResource
+from . import views # for the home page
+
+movie_resource = MovieResource()
 
 urlpatterns = [
+    path('', views.home),
     path("admin/", admin.site.urls), #Its a separate indipendent app for every project
     #Here we need to pass a new path object
-    path("movies/", include('movies.urls')) #we need to iport another function from django.urls which is include
+    path("movies/", include('movies.urls')), 
+    #we need to iport another function from django.urls which is include
     #inside include() function we need to pass the path of url configuration of movies/
     #python will send the 'movies/' to the url location and it will sit inside the "" empty string
+    path("api/", include(movie_resource.urls))
 ]

@@ -1,5 +1,9 @@
-from django.http import HttpResponse #for returning view function response
-from django.shortcuts import render # This render method is used for render template
+from django.http import HttpResponse, Http404 
+#HttpResponse for returning view function response
+#Http404 for raise 404 page not found exception
+from django.shortcuts import render, get_object_or_404
+#render method is used for render template
+#get_object_or_404 is used for shortcut of raising 404 exception
 from .models import Movie 
 # Database Abstraction API
 # The model class gives us an api(aplication programming interface) and this api abstracts away the complexity to working with database
@@ -32,3 +36,16 @@ def index(request):
     return render(request, 'movies/index.html', {'movies': movies}) #render takes 3 parameter (request, template, context which is dictionary to send data to the template page)
     # We have created a templates folder inside the movies app. By default django looks at the templates folder
     
+#when we request like movies/1 django will pass movie_id=1 to this view function
+def detail(request, movie_id):
+    # try:
+    #     movie = Movie.objects.get(pk=movie_id) # we can use id or pk both (pk = primary key)
+    #     #it will give a movie object of that id. then we will put it into a template, render it and return the result
+    #     return render(request, 'movies/detail.html', {'movie': movie})
+    # except Movie.DoesNotExist:
+    #     raise Http404()
+
+    ## We have shortcut for raise 404 page not found. import get_objectt_or_404 from django.shortcuts
+    movie = get_object_or_404(Movie, pk=movie_id) #here the first argument is the model class. here Movie
+    return render(request, 'movies/detail.html', {'movie': movie})
+

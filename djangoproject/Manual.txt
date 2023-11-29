@@ -69,3 +69,7 @@
 1. In command line: pipenv install pylint-django
 2. Create a new file on the root project folder: .pylintrc
 3. Inside the ".pylintrc" file write and save: load-plugins=pylint-django
+
+## For showing the homepage
+1. Create a views.py in vidly app or main app
+
