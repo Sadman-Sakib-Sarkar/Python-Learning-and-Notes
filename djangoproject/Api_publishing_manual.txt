@@ -12,7 +12,7 @@
         *open models.py
         *in the world of api we refer our models to resources
         *RESTfull api means Representational State Transfer (its a bunch of technical convention that defines 
-         how applications should talk to each other ove http protocol)
+         how applications should talk to each other over http protocol)
     5. we will create classResources
         *class MovieResource(ModelResource):   ##import: from tastypie.resources import ModelResource##
         *inside MovieResource class create a Meta class
